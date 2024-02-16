@@ -124,9 +124,9 @@ class FcmMessage
      * @param array|null $data
      * @return $this
      */
-    public function webpush(webpush = null)
+    public function webpush($webpush = null)
     {
-        $this->webpush = webpush;
+        $this->webpush = $webpush;
 
         return $this;
     }
