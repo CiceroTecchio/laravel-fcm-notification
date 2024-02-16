@@ -21,6 +21,10 @@ class FcmMessage
     /**
      * @var array
      */
+    private $webpush;
+    /**
+     * @var array
+     */
     private $data;
     /**
      * @var string normal|high
@@ -112,6 +116,17 @@ class FcmMessage
     public function data($data = null)
     {
         $this->data = $data;
+
+        return $this;
+    }
+    
+    /**
+     * @param array|null $data
+     * @return $this
+     */
+    public function webpush(webpush = null)
+    {
+        $this->webpush = webpush;
 
         return $this;
     }
@@ -273,6 +288,10 @@ class FcmMessage
             $payload['registration_ids'] = $this->to;
         } elseif (! empty($this->to)) {
             $payload['to'] = $this->to;
+        }
+        
+        if (isset($this->webpush) && count($this->webpush)) {
+            $payload['webpush'] = $this->webpush;
         }
 
         if (isset($this->data) && count($this->data)) {
